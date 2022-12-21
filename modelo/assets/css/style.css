@@ -1,30 +1,81 @@
-*{
-    padding: 0;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+:root {
+  --primary-color: rgb(17, 86, 102);
+  --primary-color-darker: rgb(9, 48, 56);
 }
-body{
-    background-color:aquamarine;
-    width: 100vw;
-    height: 100vh;
+
+* {
+  box-sizing: border-box;
+  outline: 0;
 }
-.form{
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--primary-color);
+  font-family: 'Open sans', sans-serif;
+  font-size: 1em;
+  line-height: 1em;
+}
+
+.container {
+  max-width: 640px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+.container :nth-child(2){
+    margin-top:15px;
+    
+}
+.container :nth-child(3){
+    margin-bottom: 25px;
+    
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right:50px;
+}
+
+.box{
     display:flex;
     flex-direction: column;
-    justify-content: center;
+    margin-top:15px;
 }
-.form button{
-    margin-top:1vh;
-    cursor:pointer
+.box p{
+    margin:0;
+    padding: 5px;
 }
-.form button:hover{
-    color:green;
+form input, form label, form button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
 }
-.container{
-    margin: 25vh auto;
-    max-width: 60vw;
-    font-size: 1.2em;
-    line-height: 1.5em;
-    background-color: black;
-    color:white;
-    border-radius: 1vw;
-    padding:1vw;
+
+.box input {
+  font-size: 24px;
+  height: 40px;
+  padding: 0 10px;
+}
+
+form input:focus {
+  outline: 1px solid var(--primary-color);
+}
+
+.box button {
+  border: none;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  height: 50px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.box button:hover {
+  background: var(--primary-color-darker);
 }
