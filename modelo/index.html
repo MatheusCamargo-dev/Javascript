@@ -31,20 +31,26 @@
                 <p>Obesidade grau 3</p>
             </div>
         </div>
-        <div class="box">
-            <h1>Calcule seu IMC</h1>
+        <form action="" class="form" method="POST">
             <div class="box">
-                <span>Peso</span>
-                <input type="text" name="peso" id="peso">
+                <h1>Calcule seu IMC</h1>
+                    <div class="box">
+                        <label for="peso">
+                            <span>Peso</span>
+                            <input type="text" name="peso" id="peso">
+                        </label>
+                    </div>
+                    <div class="box">
+                        <label for="altura">
+                            <span>Altura</span>
+                            <input type="text" name="altura" id="altura">
+                        </label>
+                    </div>
             </div>
             <div class="box">
-                <span>Altura</span>
-                <input type="text" name="altura" id="altura">
+                <button id="calcular" type="submit">Calcular</button>
             </div>
-        </div>
-        <div class="box">
-            <button id="calcular">Calcular</button>
-        </div>
+        </form>
         <div class="box resultado">
 
         </div>

@@ -2,6 +2,8 @@
 :root {
   --primary-color: rgb(17, 86, 102);
   --primary-color-darker: rgb(9, 48, 56);
+  --red: #ff0000;
+  --green: #00ff37;
 }
 
 * {
@@ -78,4 +80,12 @@ form input:focus {
 
 .box button:hover {
   background: var(--primary-color-darker);
+}
+.warn{
+  color: var(--red);
+  font-weight: bold;
+}
+.sucess{
+  color: var(--green);
+  font-weight: bold;
 }
