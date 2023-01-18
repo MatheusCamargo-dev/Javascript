@@ -1,4 +1,8 @@
-const soma = (x,y) =>{
+const retonaHora = (data) => {
+
+}
+
+const soma = (x,y) => {
     if(
         typeof x !== 'number' || 
         typeof y !== 'number'
