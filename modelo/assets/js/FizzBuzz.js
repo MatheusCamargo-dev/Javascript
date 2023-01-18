@@ -21,8 +21,11 @@ const FizzBuzz = (num) => {
 
     return {dado: retorno, numero: num}
 }
-
-const {dado: resultado, numero} = FizzBuzz(random(1,10))
-console.log(resultado, numero)
+var cont = 0;
+while (cont < random(1,10)){
+    const {dado: resultado, numero} = FizzBuzz(random(1,10))
+    console.log(numero, resultado)
+    cont++;
+}
 
 
