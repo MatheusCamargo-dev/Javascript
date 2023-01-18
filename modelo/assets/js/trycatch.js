@@ -14,6 +14,8 @@ try{
 
 }catch(erro){
     console.log('Insira um valor valído')
+} finally{
+    console.log('sempre vai ser executado este bloco')
 }
 // 3
 // Insira um valor valído
