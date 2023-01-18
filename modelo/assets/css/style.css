@@ -24,32 +24,32 @@ body {
   max-width: 640px;
   margin: 50px auto;
   background: #fff;
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
 }
-.container :nth-child(2){
-    margin-top:15px;
-    
-}
-.container :nth-child(3){
-    margin-bottom: 25px;
-    
-}
+
 .row{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin-right:50px;
+    gap: 10px;
 }
-
-.box{
+.row > input{
+  cursor: pointer;
+}
+.col{
     display:flex;
     flex-direction: column;
-    margin-top:15px;
 }
-.box p{
+.gap-40{
+  gap:40px;
+}
+.col p{
     margin:0;
     padding: 5px;
+}
+.timer{
+  font-size: 72px;
+  font-weight: bold;
 }
 form input, form label, form button {
   display: block;
@@ -57,17 +57,11 @@ form input, form label, form button {
   margin-bottom: 10px;
 }
 
-.box input {
-  font-size: 24px;
-  height: 40px;
-  padding: 0 10px;
-}
-
 form input:focus {
   outline: 1px solid var(--primary-color);
 }
 
-.box button {
+.col button {
   border: none;
   background: var(--primary-color);
   color: #fff;
@@ -78,7 +72,7 @@ form input:focus {
   margin-top: 30px;
 }
 
-.box button:hover {
+.col button:hover {
   background: var(--primary-color-darker);
 }
 .warn{
