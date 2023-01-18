@@ -1,5 +1,5 @@
 const nome = 'Matheus camargo'
 
-for(let letra in nome){
-    console.log(nome[letra])
+for(let letra of nome){
+    console.log(letra)
 }
