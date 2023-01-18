@@ -11,7 +11,7 @@ const soma = (x,y) =>{
 try{
     console.log(soma(1, 2));
     console.log(soma('1', 2));
-
+    console.log('não vai ser executado')
 }catch(erro){
     console.log('Insira um valor valído')
 } finally{
