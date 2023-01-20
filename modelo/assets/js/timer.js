@@ -4,8 +4,8 @@ const iniciar = document.querySelector('#iniciar')
 const atual = document.querySelector('#atual')
 const pausar = document.querySelector('#pausar')
 const zerar = document.querySelector('#zerar')
-var interval = ''
-var segundos = 0;
+let interval;
+let segundos = 0;
 
 // Funções
 const getHoraAtual = () => {
