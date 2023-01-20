@@ -4,25 +4,43 @@ const tarefa = document.querySelector('#tarefa');
 const listaTarefas = document.querySelector("#lista-tarefas");
 const excluiTarefa = document.querySelector(".exclui-tarefa")
 
+const criaLi = (tarefa) => {
+    let li = document.createElement('li')
+    li.id = tarefa
+    return li
+}
+
+const criaSpan = () => {
+    let span = document.createElement('span')
+    return span
+}
+
+const criaBtnApagar = (tarefa) => {
+    let btnApagar = document.createElement('input')
+    btnApagar.tarefa = tarefa
+    btnApagar.value = 'Apagar'
+    btnApagar.type = 'button'
+    btnApagar.className = 'excluiTarefa ml-10'
+    btnApagar.setAttributeNode = 'tarefa'
+    btnApagar.addEventListener('click', function(){
+        apagarTarefa(this);
+    })
+    return btnApagar
+}
+
+const adicionaTarefa = (tarefa) => {
+    listaTarefas.appendChild(tarefa)
+}
+
 const criaTarefa = (tarefa) => {
-        let ul = document.createElement('ul')
-        let li = document.createElement('li')
-        let span = document.createElement('span')
-        let btnApagar = document.createElement('input')
-        ul.id = tarefa
-        btnApagar.value = 'Apagar'
-        btnApagar.className = 'excluiTarefa ml-10'
-        btnApagar.type = 'button'
-        btnApagar.setAttributeNode = 'tarefa'
-        btnApagar.tarefa = tarefa
-        btnApagar.addEventListener('click', function(){
-            apagarTarefa(this);
-        })
-        ul.appendChild(li)
-        li.appendChild(span)
-        li.appendChild(btnApagar)
-        span.innerHTML = tarefa
-        listaTarefas.appendChild(ul)
+    let li = criaLi(tarefa)
+    let btnApagar = criaBtnApagar(tarefa)
+    let span = criaSpan()
+    span.innerHTML = tarefa
+
+    li.appendChild(span)
+    li.appendChild(btnApagar)
+    adicionaTarefa(li)
 }
 
 const apagarTarefa = (tarefa) => {
