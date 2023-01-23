@@ -24,10 +24,33 @@ function defaultValues(a, b = 10, c = 10){
 
 defaultValues(10, undefined, 10) //30 undefined assume o valor padrão
 
-function desestruturacao({nome, sobrenome, idade}){
+function desestruturacaoObj({nome, sobrenome, idade}){
     console.log(nome, sobrenome, idade) 
 }
 
 
 // desestruturação de objeto
-desestruturacao({nome:'nome', sobrenome:'sobrenome', idade:18}) //nome sobrenome 18
+desestruturacaoObj({nome:'Desestruturação', sobrenome:'Objeto', idade:18}) //Desestruturação Objeto 18
+
+function desestruturacaoArray([nome, sobrenome, idade]){
+    console.log(nome, sobrenome, idade) 
+}
+
+
+// desestruturação de Array 
+desestruturacaoArray(['Desestruturação','Array',81]) //Desestruturação Array 81
+
+// Utilizando Rest
+function calcula(operador, acumulador, ...numeros){
+    for(let numero of numeros){
+        // console.log(numero)
+        if (operador === '+') acumulador += numero;
+        if (operador === '-') acumulador -= numero;
+        if (operador === '*') acumulador *= numero;
+        if (operador === '/') acumulador /= numero;
+    }
+
+    console.log(acumulador)
+}
+
+calcula('*', 1, 20,30,40,50)
