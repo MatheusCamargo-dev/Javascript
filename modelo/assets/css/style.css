@@ -87,6 +87,16 @@ form input:focus {
 .col button:hover {
   background: var(--primary-color-darker);
 }
+.btn{
+  width: 15vw;
+  height: 5vh;
+  cursor: pointer;
+}
+.result{
+  pointer-events: none;
+  width: 27.5vw;
+  height: 5vh;
+}
 .warn{
   color: var(--red);
   font-weight: bold;
