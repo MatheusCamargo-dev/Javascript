@@ -107,6 +107,8 @@ form input:focus {
   pointer-events: none;
   width: 335px;
   height: 40px;
+  text-align:right;
+  font-size: 28px;
 }
 .warn{
   color: var(--red);
