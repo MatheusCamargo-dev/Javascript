@@ -1,20 +1,22 @@
 const viewResult = document.querySelector('#viewResult');
 const clear = document.querySelector('#clear');
 const calcula = document.querySelector('#igual');
+const apagar = document.querySelector('#apagar');
 const operadores = document.querySelectorAll('.operador');
 const numeros = document.querySelectorAll('.num');
+// var operacao = []
 
 const calculadora = {
-    operador: '',
-    resultado: 0,
+    operadores: [],
     numeros: [],
+    resultado: 0,
     setNumeros: function(numero){
         if(numero !== ''){
-            if(this.numeros[0] > 0 && this.operador == ''){
+            if(this.numeros[0] > 0 && this.operadores.length == 0){
                 // console.log(parseInt(this.numeros[0] + numero))
                 this.numeros[0] = parseInt(this.numeros[0] + numero)
                 // console.log(this.numeros[0])
-            }else if(this.numeros[0] > 0 && this.operador !== '' && this.numeros[1] > 0){
+            }else if(this.numeros[0] > 0 && this.operadores.length > 0 && this.numeros[1] > 0){
                 this.numeros[1] = parseInt(this.numeros[1] + numero)
             }
             else{
@@ -29,13 +31,22 @@ const calculadora = {
     getNumeros: function(i){
         return this.numeros[i];
     },
+    getQtdNumeros: function(){
+        return this.numeros.length
+    },
+    set ultimoNumero(numero){
+        this.numeros[this.getQtdNumeros() - 1] = parseInt(numero)
+    },
+    get ultimoNumero(){
+        return this.numeros[this.getQtdNumeros() - 1]
+    },
     calcula: function(){
-        if(this.operador !== undefined){
-            if (this.operador === '+') this.resultado = (this.numeros[0] + this.numeros[1]);
-            if (this.operador === '-') this.resultado = (this.numeros[0] - this.numeros[1]);
-            if (this.operador === '*') this.resultado = (this.numeros[0] * this.numeros[1]);
-            if (this.operador === '/') this.resultado = (this.numeros[0] / this.numeros[1]);
-            this.operador = ''
+        if(this.operadores.length > 0){
+            if (this.operadores[0] === '+') this.resultado = (this.numeros[0] + this.numeros[1]);
+            if (this.operadores[0] === '-') this.resultado = (this.numeros[0] - this.numeros[1]);
+            if (this.operadores[0] === '*') this.resultado = (this.numeros[0] * this.numeros[1]);
+            if (this.operadores[0] === '/') this.resultado = (this.numeros[0] / this.numeros[1]);
+            this.operadores = []
         }else{
             window.alert('Informe um operador.')
         }
@@ -58,12 +69,17 @@ const view = {
     },
     getView: function(){
         return viewResult.value;
+    },
+    apagaUltimoValor: function(){
+        let texto = view.getView()
+        view.setView('')
+        view.setView(texto.slice(0, -1))
     }
 }
 
 const validaNum = () =>{
    
-    if(calculadora.resultado > 0 && calculadora.operador == ''){
+    if(calculadora.resultado > 0 && calculadora.operadores.length == 0){
         calculadora.resultado = ''
         calculadora.operador = ''
         calculadora.setNumeros('')
@@ -73,17 +89,19 @@ const validaNum = () =>{
 }
 
 const validaOperador = () =>{
-    console.log(calculadora.getNumeros(0))
-    console.log(calculadora.operador)
     if(calculadora.getNumeros(0) == undefined){
         window.alert('Informe um número primeiro')
         return false
-    }else if(calculadora.operador != ''){
+    }else if(calculadora.operadores.length > 0){
         window.alert('Você já adicionou um operador.')
         return false
     }else{
         return true
     }
+}
+
+const apagaUltimoValor = (numero) => {
+    return numero.slice(0, -1)
 }
 
 clear.addEventListener('click', function(){
@@ -95,8 +113,8 @@ clear.addEventListener('click', function(){
 for(let op of operadores){
     op.addEventListener('click', function(){
       if(validaOperador()){
-        calculadora.operador = this.innerHTML
-        view.setView(calculadora.operador)
+        calculadora.operadores[0] = this.innerHTML
+        view.setView(calculadora.operadores[0])
       }
    })
 }
@@ -117,3 +135,9 @@ for(let num of numeros){
     view.setView(resultado)
  })
 
+ apagar.addEventListener('click', function(){
+     let ultimoNumero = calculadora.ultimoNumero.toString()
+     let numero = apagaUltimoValor(ultimoNumero)
+     calculadora.ultimoNumero = numero
+     view.apagaUltimoValor()
+ })
