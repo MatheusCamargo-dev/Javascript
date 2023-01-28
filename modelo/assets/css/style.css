@@ -38,6 +38,8 @@ ul, li{
   background: #fff;
   padding: 30px;
   border-radius: 10px;
+  display:flex;
+  flex-direction: column;
 }
 
 .row{
@@ -51,6 +53,15 @@ ul, li{
 .col{
     display:flex;
     flex-direction: column;
+}
+.gap-10{
+  gap:10px;
+}
+.gap-20{
+  gap:20px;
+}
+.gap-30{
+  gap:30px;
 }
 .gap-40{
   gap:40px;
@@ -88,14 +99,14 @@ form input:focus {
   background: var(--primary-color-darker);
 }
 .btn{
-  width: 15vw;
-  height: 5vh;
+  width: 75px;
+  height: 35px;
   cursor: pointer;
 }
-.result{
+.viewResult{
   pointer-events: none;
-  width: 27.5vw;
-  height: 5vh;
+  width: 335px;
+  height: 40px;
 }
 .warn{
   color: var(--red);
