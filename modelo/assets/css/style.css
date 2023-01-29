@@ -41,6 +41,11 @@ ul, li{
   display:flex;
   flex-direction: column;
 }
+.container-col {
+  /* border-radius: 10px; */
+  display:flex;
+  flex-direction: column;
+}
 
 .row{
     display: flex;
@@ -110,6 +115,16 @@ form input:focus {
   text-align:right;
   font-size: 28px;
 }
+.historico{
+  width: 250px;
+  min-height: 275px;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+h3{
+  margin-top: 35px;
+}
 .warn{
   color: var(--red);
   font-weight: bold;
@@ -117,4 +132,7 @@ form input:focus {
 .sucess{
   color: var(--green);
   font-weight: bold;
+}
+p{
+  overflow-wrap:break-word
 }
