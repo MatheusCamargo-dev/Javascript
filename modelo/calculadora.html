@@ -10,40 +10,50 @@
     <title>Modelo</title>
 </head>
 <body>
-    <div class="container gap-10">
-        <h1>Calculadora</h1>
-        <div>
-            <input type="text" class="viewResult" value="" name="viewResult" id="viewResult">
-        </div>
+    <div class="container">
         <div class="row">
-            <button id="clear" class="btn">C</button>
-            <button id="tp1" class="btn">(</button>
-            <button id="tp2" class="btn">)</button>
-            <button id="contra_barra" class="btn operador">/</button>
-        </div>
-        <div class="row">
-            <button id="sete" class="btn num">7</button>
-            <button id="oito" class="btn num">8</button>
-            <button id="nove" class="btn num">9</button>
-            <button id="multiplicacao" class="btn operador">*</button>
-        </div>
-        <div class="row">
-            <button id="quatro" class="btn num">4</button>
-            <button id="cinco" class="btn num">5</button>
-            <button id="seis" class="btn num">6</button>
-            <button id="mais" class="btn operador">+</button>
-        </div>
-        <div class="row">
-            <button id="um" class="btn num">1</button>
-            <button id="dois" class="btn num">2</button>
-            <button id="tres" class="btn num">3</button>
-            <button id="menos" class="btn operador">-</button>
-        </div>
-        <div class="row">
-            <button id="float" class="btn">.</button>
-            <button id="zero" class="btn num">0</button>
-            <button id="apagar" class="btn"><<</button>
-            <button id="igual" class="btn">=</button>
+            <div class="container-col gap-10">
+                <h1>Calculadora</h1>
+                <div>
+                    <input type="text" class="viewResult" value="" name="viewResult" id="viewResult">
+                </div>
+                <div class="row">
+                    <button id="clear" class="btn">C</button>
+                    <button id="tp1" class="btn">(</button>
+                    <button id="tp2" class="btn">)</button>
+                    <button id="contra_barra" class="btn operador">/</button>
+                </div>
+                <div class="row">
+                    <button id="sete" class="btn num">7</button>
+                    <button id="oito" class="btn num">8</button>
+                    <button id="nove" class="btn num">9</button>
+                    <button id="multiplicacao" class="btn operador">*</button>
+                </div>
+                <div class="row">
+                    <button id="quatro" class="btn num">4</button>
+                    <button id="cinco" class="btn num">5</button>
+                    <button id="seis" class="btn num">6</button>
+                    <button id="mais" class="btn operador">+</button>
+                </div>
+                <div class="row">
+                    <button id="um" class="btn num">1</button>
+                    <button id="dois" class="btn num">2</button>
+                    <button id="tres" class="btn num">3</button>
+                    <button id="menos" class="btn operador">-</button>
+                </div>
+                <div class="row">
+                    <button id="float" class="btn">.</button>
+                    <button id="zero" class="btn num">0</button>
+                    <button id="apagar" class="btn"><<</button>
+                    <button id="igual" class="btn">=</button>
+                </div>
+            </div>
+            <div class="container-col">
+                <h3>Histórico de calcúlos</h3>
+                <div class="historico" id="historico">
+                    
+                </div>
+            </div>
         </div>
     </div>
 </body>
