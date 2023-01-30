@@ -1,11 +1,11 @@
 const viewResult = document.querySelector('#display');
 const clear = document.querySelector('#clear');
 const calcula = document.querySelector('#igual');
-const apagar = document.querySelector('#apagar');
+const apagar = document.querySelector('#del');
 const historico = document.querySelector('#historico');
 const addFloat = document.querySelector('#float');
-const operadores = document.querySelectorAll('.operador');
-const numeros = document.querySelectorAll('.num');
+const operadores = document.querySelectorAll('.btn-operador');
+const numeros = document.querySelectorAll('.btn-num');
 // var operacao = []
 
 const calculadora = {
@@ -18,6 +18,7 @@ const calculadora = {
             if(this.numeros[0] > 0 && this.operadores.length == 0){
                 this.numeros[0] = parseFloat(this.numeros[0] + numero)
             }else if(this.numeros[0] > 0 && this.operadores.length > 0 && this.numeros[1] > 0){
+                console.log(this.numeros[1], numero)
                 this.numeros[1] = parseFloat(this.numeros[1] + numero)
             }
             else{
@@ -45,6 +46,36 @@ const calculadora = {
     get ultimoNumero(){
         return this.numeros[this.getQtdNumeros() - 1]
     },
+    validaNum: function(){
+        if(this.resultado > 0 && this.operadores.length == 0){
+            this.resultado = ''
+            this.operador = ''
+            this.setNumeros('')
+            view.setDisplay('')
+        }
+        return true
+    },
+    validaOperador: function(operador){
+        if(calculadora.getNumeros(0) == undefined){
+            window.alert('Informe um número primeiro')
+            return false
+        }else if(calculadora.operadores.length > 0 && operador !== '*'){
+            window.alert('Você já adicionou um operador.')
+            return false
+        }else if(calculadora.operadores.length == 1 && operador == '*' && calculadora.operadores[0] !== '**'){
+            calculadora.operadores[0] = operador + operador
+            return true
+        }else if(calculadora.operadores[0] == '**'){
+            window.alert('Você já adicionou um operador.')
+            return false
+        }else{
+            calculadora.operadores[0] = operador
+            return true
+        }
+    },
+    apagaUltimoValor: function (numero) {
+        return numero.slice(0, -1)
+    },
     calcula: function(){
         if(this.operadores.length > 0){
             if (this.operadores[0] === '+') this.resultado = (this.numeros[0] + this.numeros[1]);
@@ -69,7 +100,7 @@ const view = {
     numeros: [],
     historicoView: '',
     display: document.querySelector('#display'),
-    setView: function(resultado){
+    setDisplay: function(resultado){
         if(resultado == ''){
             this.display.value = ''
         }else{
@@ -80,129 +111,103 @@ const view = {
             }
             if(calculadora.calculando){
                 let ultimoElemento = this.getUltimoElementoHistorico()
-                ultimoElemento.innerHTML = this.getView()
+                ultimoElemento.innerHTML = this.getDisplay()
             }else{
                 let ultimoElemento = this.getUltimoElementoHistorico()
-                ultimoElemento.innerHTML += ' = ' + this.getView()
+                ultimoElemento.innerHTML += ' = ' + this.getDisplay()
                 calculadora.calculando = true
                 criaParagrafoHist()
     
             }
         }
-        
-        
     },
-    getView: function(){
+    getDisplay: function(){
         return this.display.value;
     },
     apagaUltimoValor: function(){
-        let texto = view.getView()
-        view.setView('')
-        view.setView(texto.slice(0, -1))
+        let texto = view.getDisplay()
+        view.setDisplay('')
+        view.setDisplay(texto.slice(0, -1))
     },
     getUltimoElemento: function(){
-        let ultimoValor = this.getView()
+        let ultimoValor = this.getDisplay()
         return ultimoValor[ultimoValor.length - 1]
     },
     getUltimoElementoHistorico: function(){
         return historico.lastElementChild
-    }
-}
-
-const validaNum = () =>{
-    if(calculadora.resultado > 0 && calculadora.operadores.length == 0){
-        calculadora.resultado = ''
-        calculadora.operador = ''
+    },
+    clearDisplay: function(){
+        view.setDisplay('')
         calculadora.setNumeros('')
-        view.setView('')
+        calculadora.resultado = ''
+        historico.innerHTML = ''
+    },
+    apagaDisplay: function(){
+        if(calculadora.operadores.length == 0){
+            let ultimoNumero = calculadora.ultimoNumero.toString()
+            calculadora.ultimoNumero = calculadora.apagaUltimoValor(ultimoNumero)
+            this.apagaUltimoValor()
+         }else if(calculadora.operadores.length > 0 && calculadora.getQtdNumeros() == 1){
+            calculadora.operadores = []
+            this.apagaUltimoValor()
+         }else if(calculadora.operadores.length > 0 && calculadora.getQtdNumeros() == 2){
+            let ultimoNumero = calculadora.ultimoNumero.toString()
+            calculadora.ultimoNumero = calculadora.apagaUltimoValor(ultimoNumero)
+            this.apagaUltimoValor()
+         }
+    },
+    addPonto: function(){
+        if(calculadora.operadores.length == 0){
+            calculadora.ultimoNumero = calculadora.ultimoNumero.toString() + '.'
+            this.setDisplay('.')
+         }else if(calculadora.operadores.length > 0 && calculadora.getQtdNumeros() == 1){
+            window.alert('Não é possivel adicionar este valor a um operador')
+         }else if(calculadora.operadores.length > 0 && calculadora.getQtdNumeros() == 2){
+            calculadora.ultimoNumero = calculadora.ultimoNumero.toString() + '.'
+            this.setDisplay('.')
+         }
+    },
+    cliqueBotoes: function(){
+        document.addEventListener('click', (e) => {
+            const target = e.target
+            if(target.classList.contains('btn-num')){
+                let num = target.innerHTML
+                if(calculadora.validaNum(num)){
+                    this.setDisplay(num)
+                    calculadora.setNumeros(num)
+                }
+            }
+            
+            if(target.classList.contains('btn-operador')){
+                if(calculadora.validaOperador(target.innerHTML)){
+                    this.setDisplay(target.innerHTML)
+                }
+            }
+        
+            if(target.id == 'igual'){
+                let resultado = calculadora.calcula()
+                this.setDisplay('')
+                this.setDisplay(resultado)
+            }
+
+            if(target.id == 'clear'){
+                this.clearDisplay()
+            }
+
+            if(target.id == 'del'){
+                this.apagaDisplay()
+            }
+
+            if(target.id == 'float'){
+                this.addPonto()
+            }
+        })
     }
-    return true
 }
 
-const validaOperador = (operador) =>{
-    if(calculadora.getNumeros(0) == undefined){
-        window.alert('Informe um número primeiro')
-        return false
-    }else if(calculadora.operadores.length > 0 && operador !== '*'){
-        window.alert('Você já adicionou um operador.')
-        return false
-    }else if(calculadora.operadores.length == 1 && operador == '*' && calculadora.operadores[0] !== '**'){
-        calculadora.operadores[0] = operador + operador
-        return true
-    }else if(calculadora.operadores[0] == '**'){
-        window.alert('Você já adicionou um operador.')
-        return false
-    }else{
-        calculadora.operadores[0] = operador
-        return true
-    }
-}
-
-const apagaUltimoValor = (numero) => {
-    return numero.slice(0, -1)
-}
-
-clear.addEventListener('click', function(){
-    view.setView('')
-    calculadora.setNumeros('')
-    calculadora.resultado = ''
-    historico.innerHTML = ''
- })
-
-
-for(let op of operadores){
-    op.addEventListener('click', function(){
-      if(validaOperador(this.innerHTML)){
-        view.setView(this.innerHTML)
-      }
-   })
-}
-
-for(let num of numeros){
-    num.addEventListener('click', function(){
-        let num = this.innerHTML
-        if(validaNum(num)){
-            view.setView(num)
-            calculadora.setNumeros(num)
-        }
-    })
- }
+view.cliqueBotoes()
 
  const criaParagrafoHist = () => {
     let p = document.createElement('p')
     historico.appendChild(p)
 }
-
- calcula.addEventListener('click', function(){
-    let resultado = calculadora.calcula()
-    view.setView('')
-    view.setView(resultado)
- })
-
- apagar.addEventListener('click', function(){
-     if(calculadora.operadores.length == 0){
-        let ultimoNumero = calculadora.ultimoNumero.toString()
-        calculadora.ultimoNumero = apagaUltimoValor(ultimoNumero)
-        view.apagaUltimoValor()
-     }else if(calculadora.operadores.length > 0 && calculadora.getQtdNumeros() == 1){
-        calculadora.operadores = []
-        view.apagaUltimoValor()
-     }else if(calculadora.operadores.length > 0 && calculadora.getQtdNumeros() == 2){
-        let ultimoNumero = calculadora.ultimoNumero.toString()
-        calculadora.ultimoNumero = apagaUltimoValor(ultimoNumero)
-        view.apagaUltimoValor()
-     }
- })
-
- addFloat.addEventListener('click', function(){
-    if(calculadora.operadores.length == 0){
-        calculadora.ultimoNumero = calculadora.ultimoNumero.toString() + '.'
-        view.setView('.')
-     }else if(calculadora.operadores.length > 0 && calculadora.getQtdNumeros() == 1){
-        window.alert('Não é possivel adicionar este valor a um operador')
-     }else if(calculadora.operadores.length > 0 && calculadora.getQtdNumeros() == 2){
-        calculadora.ultimoNumero = calculadora.ultimoNumero.toString() + '.'
-        view.setView('.')
-     }
-
- })
