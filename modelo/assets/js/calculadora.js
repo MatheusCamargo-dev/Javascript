@@ -1,4 +1,4 @@
-const viewResult = document.querySelector('#viewResult');
+const viewResult = document.querySelector('#display');
 const clear = document.querySelector('#clear');
 const calcula = document.querySelector('#igual');
 const apagar = document.querySelector('#apagar');
@@ -68,11 +68,12 @@ const calculadora = {
 const view = {
     numeros: [],
     historicoView: '',
+    display: document.querySelector('#display'),
     setView: function(resultado){
         if(resultado == ''){
-            viewResult.value = ''
+            this.display.value = ''
         }else{
-            viewResult.value += resultado
+            this.display.value += resultado
 
             if(historico.children.length == 0){
                 criaParagrafoHist()
@@ -92,7 +93,7 @@ const view = {
         
     },
     getView: function(){
-        return viewResult.value;
+        return this.display.value;
     },
     apagaUltimoValor: function(){
         let texto = view.getView()
@@ -144,6 +145,7 @@ const apagaUltimoValor = (numero) => {
 clear.addEventListener('click', function(){
     view.setView('')
     calculadora.setNumeros('')
+    calculadora.resultado = ''
     historico.innerHTML = ''
  })
 

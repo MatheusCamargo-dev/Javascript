@@ -108,7 +108,7 @@ form input:focus {
   height: 35px;
   cursor: pointer;
 }
-.viewResult{
+.display{
   pointer-events: none;
   width: 335px;
   height: 40px;
