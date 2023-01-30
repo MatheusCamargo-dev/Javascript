@@ -1,12 +1,3 @@
-const viewResult = document.querySelector('#display');
-const clear = document.querySelector('#clear');
-const calcula = document.querySelector('#igual');
-const apagar = document.querySelector('#del');
-const historico = document.querySelector('#historico');
-const addFloat = document.querySelector('#float');
-const operadores = document.querySelectorAll('.btn-operador');
-const numeros = document.querySelectorAll('.btn-num');
-// var operacao = []
 
 const calculadora = {
     operadores: [],
@@ -15,10 +6,9 @@ const calculadora = {
     calculando: true,
     setNumeros: function(numero){
         if(numero !== ''){
-            if(this.numeros[0] > 0 && this.operadores.length == 0){
+            if(this.numeros.length > 0 && this.operadores.length == 0){
                 this.numeros[0] = parseFloat(this.numeros[0] + numero)
-            }else if(this.numeros[0] > 0 && this.operadores.length > 0 && this.numeros[1] > 0){
-                console.log(this.numeros[1], numero)
+            }else if(this.numeros.length > 1 && this.operadores.length > 0){
                 this.numeros[1] = parseFloat(this.numeros[1] + numero)
             }
             else{
@@ -93,21 +83,21 @@ const calculadora = {
         calculadora.calculando = false;
         return this.resultado
     },
-    // resultado
 }
 
 const view = {
     numeros: [],
     historicoView: '',
     display: document.querySelector('#display'),
+    historico: document.querySelector('#historico'),
     setDisplay: function(resultado){
         if(resultado == ''){
             this.display.value = ''
         }else{
             this.display.value += resultado
 
-            if(historico.children.length == 0){
-                criaParagrafoHist()
+            if(this.historico.children.length == 0){
+                this.criaParagrafoHist()
             }
             if(calculadora.calculando){
                 let ultimoElemento = this.getUltimoElementoHistorico()
@@ -116,7 +106,7 @@ const view = {
                 let ultimoElemento = this.getUltimoElementoHistorico()
                 ultimoElemento.innerHTML += ' = ' + this.getDisplay()
                 calculadora.calculando = true
-                criaParagrafoHist()
+                this.criaParagrafoHist()
     
             }
         }
@@ -134,13 +124,13 @@ const view = {
         return ultimoValor[ultimoValor.length - 1]
     },
     getUltimoElementoHistorico: function(){
-        return historico.lastElementChild
+        return this.historico.lastElementChild
     },
     clearDisplay: function(){
         view.setDisplay('')
         calculadora.setNumeros('')
         calculadora.resultado = ''
-        historico.innerHTML = ''
+        this.historico.innerHTML = ''
     },
     apagaDisplay: function(){
         if(calculadora.operadores.length == 0){
@@ -155,6 +145,10 @@ const view = {
             calculadora.ultimoNumero = calculadora.apagaUltimoValor(ultimoNumero)
             this.apagaUltimoValor()
          }
+    },
+    criaParagrafoHist: function(){
+        let p = document.createElement('p')
+        this.historico.appendChild(p)
     },
     addPonto: function(){
         if(calculadora.operadores.length == 0){
@@ -184,30 +178,28 @@ const view = {
                 }
             }
         
-            if(target.id == 'igual'){
+            if(target.classList.contains('btn-eql')){
                 let resultado = calculadora.calcula()
                 this.setDisplay('')
                 this.setDisplay(resultado)
             }
 
-            if(target.id == 'clear'){
+            if(target.classList.contains('btn-clear')){
                 this.clearDisplay()
             }
 
-            if(target.id == 'del'){
+            if(target.classList.contains('btn-delete')){
                 this.apagaDisplay()
             }
 
-            if(target.id == 'float'){
+            if(target.classList.contains('btn-point')){
                 this.addPonto()
             }
         })
+    },
+    iniciar: function(){
+        this.cliqueBotoes()
     }
 }
 
-view.cliqueBotoes()
-
- const criaParagrafoHist = () => {
-    let p = document.createElement('p')
-    historico.appendChild(p)
-}
+view.iniciar()
