@@ -22,4 +22,5 @@ console.log(nomes.slice(0,-1)) // remove o ultimo elemento
 
 const nome = 'Maria Eduarda';
 console.log(nome.split(' ')) //divide o array por um valor
+console.log(nome.join(' ')) //retorna a junção dos elementos do array por um valor
 // console.log(nome)
