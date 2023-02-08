@@ -1,8 +1,6 @@
 const print = (...string) => console.log(...string);
 
 function Product(name, value, stock){
-    this.name = name;
-    this.value = value;
 
     Object.defineProperty(this, 'stock', {
         enumerable: true, //show key
