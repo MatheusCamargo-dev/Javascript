@@ -25,3 +25,18 @@ function Product(name, value, stock){
 const t_shirt = new Product('T-shirt', 20, 10)
 t_shirt.stock = 'string'
 print(t_shirt.stock)
+
+function createProduct(name){
+    return {
+        get name(){
+            return name;
+        },
+        set name(value){
+            name = value
+        }
+    }
+}
+
+const p1 = createProduct('T-shirt')
+p1.name = 'jfdsjkhfsdkjfh'
+console.log(p1.name)
