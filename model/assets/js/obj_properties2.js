@@ -1,0 +1,5 @@
+
+const objA = {
+    keyA: 'a'
+    
+}
