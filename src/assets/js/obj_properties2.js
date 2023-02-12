@@ -1,5 +1,0 @@
-
-const objA = {
-    keyA: 'a'
-    
-}
