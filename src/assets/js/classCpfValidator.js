@@ -75,25 +75,23 @@ class View{
     }
 
     init(){
-        let self = this;
 
-        self.inputCpf.addEventListener('blur', function(){
-            self.inputCpf.value = maskCpf(self.inputCpf.value)
+        this.inputCpf.addEventListener('blur', e => {
+            this.inputCpf.value = maskCpf(this.inputCpf.value)
         })
 
-        self.inputCpf.addEventListener('keypress', function(e){
-            self.inputCpf.value = maskCpf(self.inputCpf.value)
+        this.inputCpf.addEventListener('keypress', e => {
+            this.inputCpf.value = maskCpf(this.inputCpf.value)
             if(e.keyCode === 13){
-                let cpf = new CpfValidator(self.inputCpf.value)
-                console.log(cpf)
-                cpf.valid() ? self.displaySuccess() : self.displayInvalid();
+                let cpf = new CpfValidator(this.inputCpf.value)
+                cpf.valid() ? this.displaySuccess() : this.displayInvalid();
               
             }
         });      
 
-        self.btnCpf.addEventListener('click', function(){
-            let cpf = new CpfValidator(self.inputCpf.value)
-            cpf.valid() ? self.displaySuccess() : self.displayInvalid();     
+        this.btnCpf.addEventListener('click', e => {
+            let cpf = new CpfValidator(this.inputCpf.value)
+            cpf.valid() ? this.displaySuccess() : this.displayInvalid();     
         })
 
     }
