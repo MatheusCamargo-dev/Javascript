@@ -14,7 +14,7 @@ function wait(msg, time){
     
 }
 // test commit
-// more modifieds 
+// more modifieds  a
 // wait('msg 1', rand(), function(){
 //     wait('msg 2', rand(), function() {
 //         wait('msg 3', rand())
