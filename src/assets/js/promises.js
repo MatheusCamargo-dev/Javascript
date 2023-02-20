@@ -20,7 +20,12 @@ function wait(msg, time){
 //     })
 // })
 
+
+// NOTE: *** I will only continue (then) with my promise if it resolves (resolve) ***
+
+
 // Examples promises
+
 wait('Connection with DB...', rand())
     .then(r => {
         print(r)
@@ -40,3 +45,5 @@ wait('Connection with DB...', rand())
 .catch(e => print('ERRO:', e))
 
 print('First resolve')
+
+
