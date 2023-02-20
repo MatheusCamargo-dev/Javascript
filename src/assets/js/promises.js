@@ -13,8 +13,7 @@ function wait(msg, time){
 
     
 }
-// test commit
-// more modifieds 
+
 // wait('msg 1', rand(), function(){
 //     wait('msg 2', rand(), function() {
 //         wait('msg 3', rand())
@@ -24,9 +23,7 @@ function wait(msg, time){
 
 // NOTE: *** I will only continue (then) with my promise if it resolves (resolve) ***
 
-
 // Examples promises
-
 wait('Connection with DB...', rand())
     .then(r => {
         print(r)
@@ -46,5 +43,3 @@ wait('Connection with DB...', rand())
 .catch(e => print('ERRO:', e))
 
 print('First resolve')
-
-
