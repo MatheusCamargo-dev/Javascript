@@ -18,12 +18,22 @@ export class PasswordGenerator{
      }
 
      static generateSymbol(){
-        const symbols = '.,;~^[]{}!@#$%*()_+=-'
-        return symbols[PasswordGenerator(0, symbols.length)]
+        let symbols = '.,;~^[]{}!@#$%*()_+=-'
+        return symbols[PasswordGenerator.rand(0, symbols.length)]
      }
 
-     generatePassword(qtd, uppercase, lowercase, number, symbol){
-        
+     static generatePassword(qtd, uppercase, lowercase, number, symbol){
+        const arrayPassword = [];
+        qtd = Number(qtd);
+
+        for(let i = 0; i <= qtd; i++){
+            uppercase && arrayPassword.push(PasswordGenerator.generateUpperCase());
+            lowercase && arrayPassword.push(PasswordGenerator.generateLowerCase());
+            number && arrayPassword.push(PasswordGenerator.generateNumber());
+            symbol && arrayPassword.push(PasswordGenerator.generateSymbol());
+        }
+
+        return arrayPassword.join('').slice(0, qtd);
      }
 
 
