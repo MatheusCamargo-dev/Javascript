@@ -1,9 +1,7 @@
-const { response } = require('express');
 const express = require('express');
 const app = express();
-
-// CRUD -> CREATE, READ, UPDATE, DELETE
-//          POST    GET   PUT    DELETE
+app.listen(3333, () => console.log('webserver: http://localhost:3333'));
+app.use(express.urlencoded({extended: true}))
 
 app.get('/', (request, response) => {
     response.send(`
@@ -15,15 +13,5 @@ app.get('/', (request, response) => {
 });
 
 app.post('/', (req, res) => {
-    res.send('Hello world!')
+    res.send('')
 })
-
-app.get('/contact', (request, response) => {
-    response.send('Contact us!');
-});
-
-app.listen(3333, () => {
-    console.log('Server running in port 3333');
-    console.log('webserver: http://localhost:3333');
-
-});
