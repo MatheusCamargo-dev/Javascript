@@ -1,0 +1,16 @@
+This files contains the main npm commands
+
+init npm: npm init -y (default)
+
+install modules: npm i (module) --save-dev (from dev dependencies) or --save-prod
+
+install x-version from module: npm i (module)@(version) //x.x.x -> major. minor. patch . ^x.x.x (update minor and patch version, -e exclude '^')
+
+show version: npm outdated
+
+update modules: npm update
+
+uninstall modules: npm uninstall (modules)
+
+npm init adonis-ts-app my-project
+
