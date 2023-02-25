@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" defer></script>
+    <script src="./src/assets/js/main.js" defer></script>
+    <script src="./src/assets/js/script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="box">
+                <h1>IMC</h1>
+                <p>Menos do que 18,5</p>
+                <p>Entre 18,5 e 24,9</p>
+                <p>Entre 25 e 29,9</p>
+                <p>Entre 30 e 34,9</p>
+                <p>Entre 35 e 39,9</p>
+                <p>Mais do que 40</p>
+            </div>
+            <div class="box">
+                <h1>Resultado</h1>
+                <p>Abaixo do peso</p>
+                <p>Peso normal</p>
+                <p>Sobrepeso</p>
+                <p>Obesidade grau 1</p>
+                <p>Obesidade grau 2</p>
+                <p>Obesidade grau 3</p>
+            </div>
+        </div>
+        <form action="" class="form" method="POST">
+            <div class="box">
+                <h1>Calcule seu IMC</h1>
+                    <div class="box">
+                        <label for="peso">
+                            <span>Peso</span>
+                            <input type="text" name="peso" id="peso">
+                        </label>
+                    </div>
+                    <div class="box">
+                        <label for="altura">
+                            <span>Altura</span>
+                            <input type="text" name="altura" id="altura">
+                        </label>
+                    </div>
+            </div>
+            <div class="box">
+                <button id="calcular" type="submit">Calcular</button>
+            </div>
+        </form>
+        <div class="box resultado">
+
+        </div>
+    </div>
+</body>
+</html>

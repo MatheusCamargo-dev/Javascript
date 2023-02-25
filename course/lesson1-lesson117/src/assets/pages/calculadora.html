@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" defer></script>
+    <script src="../js/calculadora.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Modelo</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="container-col gap-10">
+                <h1>Calculadora</h1>
+                <div>
+                    <input type="text" class="display" value="" name="display" id="display">
+                </div>
+                <div class="row">
+                    <button id="clear" class="btn btn-clear">C</button>
+                    <button id="tp1" class="btn">(</button>
+                    <button id="tp2" class="btn">)</button>
+                    <button id="contra_barra" class="btn btn-operador">/</button>
+                </div>
+                <div class="row">
+                    <button id="sete" class="btn btn-num">7</button>
+                    <button id="oito" class="btn btn-num">8</button>
+                    <button id="nove" class="btn btn-num">9</button>
+                    <button id="multiplicacao" class="btn btn-operador">*</button>
+                </div>
+                <div class="row">
+                    <button id="quatro" class="btn btn-num">4</button>
+                    <button id="cinco" class="btn btn-num">5</button>
+                    <button id="seis" class="btn btn-num">6</button>
+                    <button id="mais" class="btn btn-operador">+</button>
+                </div>
+                <div class="row">
+                    <button id="um" class="btn btn-num">1</button>
+                    <button id="dois" class="btn btn-num">2</button>
+                    <button id="tres" class="btn btn-num">3</button>
+                    <button id="menos" class="btn btn-operador">-</button>
+                </div>
+                <div class="row">
+                    <button id="float" class="btn btn-point">.</button>
+                    <button id="zero" class="btn btn-num">0</button>
+                    <button id="del" class="btn btn-delete"><<</button>
+                    <button id="eql" class="btn btn-eql">=</button>
+                </div>
+            </div>
+            <div class="container-col">
+                <h3>Histórico de calcúlos</h3>
+                <div class="historico" id="historico">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
