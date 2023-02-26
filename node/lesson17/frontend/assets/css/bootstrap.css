@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+:root {
+  --primary-color: rgb(17, 86, 102);
+  --primary-color-darker: rgb(9, 48, 56);
+  --red: #ff0000;
+  --green: #00ff37;
+  --blue: #45AAFC;
+}
+
+.text-green{
+  color: var(--green);
+}
+.text-blue{
+  color: var(--blue);
+}
+
+@media(min-width:576px){
+  .dropdown:hover > .dropdown-menu{
+    display: block;
+    margin-top: 0;
+  }
+  
+}

@@ -1,6 +1,10 @@
 {
     "cSpell.words": [
         "ajax",
+        "crsf",
+        "csrf",
+        "Csrf",
+        "middlewares",
         "resave",
         "tudo",
         "Zoro"
