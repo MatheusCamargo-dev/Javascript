@@ -1,21 +1,22 @@
 require('dotenv').config()
 const express = require('express');
 const app = express();
-const routes = require('./routes');
-const path = require('path');
-
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.DBPASSWORD)
         .then( () => {
             app.emit('connected')
         });
-
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
+const routes = require('./routes');
+const path = require('path');
+const helmet = require('helmet');
+const csurf = require('csurf');
+const { middleware, checkCsrfErro, csrfMiddleware} = require('./src/middlewares/middleware');
 
-
+app.use(helmet());
 app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.resolve(__dirname, 'public')))
 
@@ -36,6 +37,12 @@ app.use(flash());
 app.set('views', path.resolve(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
 
+app.use(csurf());
+
+// my middlewares
+app.use(csrfMiddleware);
+app.use(checkCsrfErro);
+app.use(middleware);
 app.use(routes);
     
     
