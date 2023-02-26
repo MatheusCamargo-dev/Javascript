@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<%- include('includes/head') %>
+<body class="bg-dark text-white">
+    <header>
+    <!-- place navbar here -->
+    </header>
+    <main>
+        <h1 class="text-dark container bg-white rounded border border-2 border-success p-2 mt-3">
+            <!-- <% %> js expression (flux control)-->
+            <!-- <%= %> don't exec html -->
+            <!-- <%- %> execute html -->
+            <% if(typeof title !== 'undefined'){ %>
+              <%-  title %>
+            <% } else { %>
+                 title wasn't sent
+            <% } %>
+            <br>
+            Numbers: <br>
+            <% numbers.forEach(num => { %>
+              <%= num %>
+            <% }) %> <br>
+            Local var:
+            <%= varLOCAL %>
+        </h1>
+       <%- include('includes/formLogin')%> 
+    </main>
+    <footer>
+    <!-- place footer here -->
+    </footer>
+ 
+</body>
+
+</html>
