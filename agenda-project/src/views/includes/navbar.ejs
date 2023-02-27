@@ -1,14 +1,21 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-info">
-    <a class="navbar-brand ms-3" href="#">Agenda</a>
+    <a class="navbar-brand ms-3" href="/"><i class="bi bi-journals"></i> Agenda</a>
     <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
         aria-expanded="false" aria-label="Toggle navigation"></button>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-
             <li class="nav-item me-3">
-                <a class="nav-link text-white" href="#">Sair</a>
+                <a class="nav-link text-white" href="/contact">Contact <i class="bi bi-person-lines-fill"></i></a>
             </li>
-            
+            <% if(!user) { %>
+                <li class="nav-item me-3">
+                    <a class="nav-link text-white" href="/login">Login <i class="bi bi-box-arrow-in-right"></i></a>
+                </li>
+            <% } else { %>
+                <li class="nav-item me-3">
+                    <a class="nav-link text-white" href="/login/logout">Logout <i class="bi bi-box-arrow-in-left"></i></a>
+                </li>
+            <% } %>
         </ul>
     </div>
 </nav>

@@ -34,8 +34,9 @@
                 <div class="col-5">
                     <h2>Login:</h2>
                     <p>If you have an account please login below</p>
+                    <%- include('includes/messages-login') %>
                     <div class="col text-start bg-white rounded text-dark">
-                        <form action="/" method="POST">
+                        <form action="/login/" method="POST">
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <span>Email</span>
                             <input title="input" id="email" name="email" type="text" class="form-control mb-2" required> 

@@ -1,0 +1,23 @@
+<% if (errors_login.length > 0) { %>
+    <div class="row m-0 p-0 my-2">
+        <div class="col">
+            <div class="alert alert-danger">
+                <% errors_login.forEach(erro => { %>
+                    <%= erro %><br>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+<% if (success_login.length > 0) { %>
+    <div class="row m-0 p-0 my-2">
+        <div class="col">
+            <div class="alert alert-success">
+                <% success_login.forEach(success => { %>
+                    <%= success %><br>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+<% } %>
