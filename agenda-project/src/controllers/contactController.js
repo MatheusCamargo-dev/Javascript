@@ -45,3 +45,9 @@ exports.editIndex = async (req,res) => {
     res.render('contact', { contact })
 
 }
+
+exports.updateIndex = async (req, res) => {
+    const contact = new Contact(req.body);
+    await contact.update(req.params.id);
+    res.redirect('back');
+}

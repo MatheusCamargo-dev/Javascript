@@ -44,6 +44,11 @@ class Contact {
         }
     }
 
+    async update(id){
+        this.valid();
+        ContactModel.findOneAndUpdate({id: id}, this.body);
+    }
+
     cleanUp(){
         for(let key in this.body){
             if (typeof this.body[key] !== 'string') {

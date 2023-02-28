@@ -16,7 +16,13 @@
                     <h3>Create or edit your contacts</h3>
                     <%- include('includes/messages') %>
                     <div class="col-12 text-start d-flex justify-content-center bg-white rounded text-dark m-0">
-                        <form action="/contact/register" method="POST" class="col-6">                            
+                        <% if (contact._id) { %>
+                            <form action="/contact/update/<%= contact._id %>" method="POST" class="col-6">
+                        <% } else { %>    
+                            <form action="/contact/register" method="POST" class="col-6">
+                        <% } %>    
+                        
+                        
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <span>Name</span>
                             <input title="input" value="<%= contact.name %>" id="name" name="name" type="text" class="form-control mb-2">
