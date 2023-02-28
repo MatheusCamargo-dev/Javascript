@@ -14,17 +14,18 @@
                 <div class="col-12">
                     <h1 class="mt-0">Contacts</h1>
                     <h3>Create or edit your contacts</h3>
-                    <div class="col-8 text-start d-flex justify-content-center bg-white rounded text-dark">
-                        <form action="/contact/register" method="POST">                            
+                    <%- include('includes/messages') %>
+                    <div class="col-12 text-start d-flex justify-content-center bg-white rounded text-dark m-0">
+                        <form action="/contact/register" method="POST" class="col-6">                            
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <span>Name</span>
-                            <input title="input" id="name" name="name" type="text" class="form-control mb-2" required>
+                            <input title="input" value="<%= contact.name %>" id="name" name="name" type="text" class="form-control mb-2">
                             <span>Last name</span>
-                            <input title="input" id="last_name" name="last_name" type="text" class="form-control mb-2" required>
+                            <input title="input" value="<%= contact.last_name%>" id="last_name" name="last_name" type="text" class="form-control mb-2">
                             <span>Email:</span>
-                            <input title="input" id="email" name="email" type="email" class="form-control" required>
+                            <input title="input" value="<%= contact.email %>" id="email" name="email" type="email" class="form-control">
                             <span>Phone:</span>
-                            <input title="input" id="phone" name="phone" type="tel" class="form-control" required>
+                            <input title="input" value="<%= contact.phone %>" id="phone" name="phone" type="tel" class="form-control">
                             <div class="mt-3">
                                 <button type="submit" class="btn btn-lg btn-success">Save</button>
                             </div>

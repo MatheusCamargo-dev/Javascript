@@ -1,0 +1,11 @@
+<% if (required_login.length > 0) { %>
+    <div class="col-12 m-0 p-0">
+        <div class="col">
+            <div class="alert alert-danger">
+                <% required_login.forEach(erro => { %>
+                    <%= erro %><br>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+<% } %>

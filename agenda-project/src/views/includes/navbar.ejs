@@ -4,9 +4,11 @@
         aria-expanded="false" aria-label="Toggle navigation"></button>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+            <% if(user) { %>
             <li class="nav-item me-3">
                 <a class="nav-link text-white" href="/contact">Contact <i class="bi bi-person-lines-fill"></i></a>
             </li>
+            <% } %>
             <% if(!user) { %>
                 <li class="nav-item me-3">
                     <a class="nav-link text-white" href="/login">Login <i class="bi bi-box-arrow-in-right"></i></a>
