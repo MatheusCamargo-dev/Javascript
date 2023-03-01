@@ -39,14 +39,27 @@ class Contact {
     static async find(id = ''){
         if(typeof id !== 'string') return;
         if(id.length > 0){
-            const contact = await ContactModel.findById(id)
-            return contact
+            try{
+                const contact = await ContactModel.findById(id);
+                return contact;
+            }catch(e){
+                console.log(e);
+            }        
+        }else{
+            try{
+                const contacts = await ContactModel.find().sort({ createdOn: 1 });
+                return contacts;
+            }catch(e){
+                console.log(e);
+            }
         }
     }
 
     async update(id){
-        this.valid();
-        ContactModel.findOneAndUpdate({id: id}, this.body);
+        if(typeof id !== 'string') return;
+        this.valid();   
+        if(this.errors.length > 0) return;
+        this.contact = await ContactModel.findByIdAndUpdate(id, this.body, { new: true});
     }
 
     cleanUp(){
