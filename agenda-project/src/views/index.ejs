@@ -17,8 +17,8 @@
                     <h1 class="display-3 text-center">Agenda</h1>
                     <p class="text-center lead mt-2 pricing-item d-flex align-items-center justify-content-center">Your contacts is here<i class="bi bi-arrow-down-short arrow-item fa-5x"></i></p>
                 </div>
-                
-                <div class="responsive-table">
+                <% if (contacts.length > 0) { %>
+                <div class="table-responsive-md">
                     <table class="table table-hover text-white">
                         <thead>
                             <tr>
@@ -38,12 +38,17 @@
                                     <td><%= contact.phone %></td>
                                     <td><%= contact.email %></td>
                                     <td><a href="/contact/<%= contact.id %>"> <i class="bi bi-pencil-square ms-2"></i></a></td>
-                                    <td><a href="/contact/delete/<%= contact.id %>"> <i class="bi bi-trash ms-2"></i></a></td>
+                                    <td><a href="/contact/delete/<%= contact.id %>" data-bs-toggle="modal" data-bs-target="#modalContact" > <i class="bi bi-trash ms-2"></i></a></td>
                                 </tr>
                             <% }) %>
                         </thead>
                     </table>
                 </div>
+                <% } else { %>
+                    <div class="text-center d-flex flex-column align-items-center mt-5 p-5 justify-content-center">
+                        <h1>You haven't registered contacts</h1>
+                    </div>
+                <% } %>
                 <div class="col-lg-2"></div>
             </div>
         </div>
@@ -52,7 +57,23 @@
     <footer>
         
     </footer>
- 
+    <div class="modal fade" id="modalContact" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark" id="modalTitleId">Delete your contact?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-dark span-mt-1">
+                    <p>Do you really want to delete this contact?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

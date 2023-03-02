@@ -62,6 +62,12 @@ class Contact {
         this.contact = await ContactModel.findByIdAndUpdate(id, this.body, { new: true});
     }
 
+    static async delete(id){
+        if(typeof id !== 'string') return;
+        const contact = await ContactModel.findByIdAndDelete(id);
+        return contact;
+    }
+
     cleanUp(){
         for(let key in this.body){
             if (typeof this.body[key] !== 'string') {
