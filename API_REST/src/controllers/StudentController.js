@@ -1,4 +1,5 @@
 import Student from '../models/Student';
+import Photo from '../models/Photo';
 
 class StudentController {
   async store(req, res) {
@@ -13,7 +14,14 @@ class StudentController {
   }
 
   async index(req, res) {
-    const students = await Student.findAll({ attributes: ['id', 'name', 'last_name', 'email', 'age', 'weight', 'height'] });
+    const students = await Student.findAll({
+      attributes: ['id', 'name', 'last_name', 'email', 'age', 'weight', 'height'],
+      order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
+      include: {
+        model: Photo,
+        attributes: ['original_name', 'filename'],
+      },
+    });
     res.json(students);
   }
 
@@ -25,14 +33,24 @@ class StudentController {
           errors: ['Missing id.'],
         });
       }
-      const student = await Student.findByPk(id);
+      const student = await Student.findByPk(
+        id,
+        {
+          attributes: ['id', 'name', 'last_name', 'email', 'age', 'weight', 'height'],
+          order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
+          include: {
+            model: Photo,
+            attributes: ['original_name', 'filename'],
+          },
+        },
+      );
       if (!student) {
         return res.status(400).json({
           errors: ['student not found.'],
         });
       }
-      const { name, email } = student;
-      return res.json({ id, name, email });
+
+      return res.json(student);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((error) => error.message),

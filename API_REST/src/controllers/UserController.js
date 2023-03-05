@@ -40,7 +40,7 @@ class UserController {
     try {
       if (!req.userId) {
         return res.status(400).json({
-          errors: ['missing id.'],
+          errors: ['Missing id.'],
         });
       }
 
@@ -48,7 +48,7 @@ class UserController {
 
       if (!user) {
         return res.status(400).json({
-          errors: ['user doesn\'t exits.'],
+          errors: ["User doesn't exist."],
         });
       }
 
