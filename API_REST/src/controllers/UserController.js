@@ -4,7 +4,8 @@ class UserController {
   async store(req, res) {
     try {
       const newUser = await User.create(req.body);
-      return res.json(newUser);
+      const { id, name, email } = newUser;
+      return res.json({ id, name, email });
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((error) => error.message),
@@ -15,7 +16,7 @@ class UserController {
   // Index
   async index(req, res) {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({ attributes: ['id', 'name', 'email'] });
       return res.json(users);
     } catch (e) {
       return res.json(null);
@@ -27,7 +28,8 @@ class UserController {
     try {
       const { id } = req.params;
       const user = await User.findByPk(id);
-      return res.json(user);
+      const { name, email } = user;
+      return res.json({ id, name, email });
     } catch (e) {
       return res.json(null);
     }
@@ -36,13 +38,13 @@ class UserController {
   // Update
   async update(req, res) {
     try {
-      if (!req.params.id) {
+      if (!req.userId) {
         return res.status(400).json({
           errors: ['missing id.'],
         });
       }
 
-      const user = await User.findByPk(req.params.id);
+      const user = await User.findByPk(req.userId);
 
       if (!user) {
         return res.status(400).json({
@@ -51,7 +53,8 @@ class UserController {
       }
 
       const update = await user.update(req.body);
-      return res.json(update);
+      const { id, name, email } = update;
+      return res.json({ id, name, email });
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((error) => error.message),
@@ -62,13 +65,13 @@ class UserController {
   // Delete
   async delete(req, res) {
     try {
-      if (!req.params.id) {
+      if (!req.userId) {
         return res.status(400).json({
           errors: ['missing id.'],
         });
       }
 
-      const user = await User.findByPk(req.params.id);
+      const user = await User.findByPk(req.userId);
 
       if (!user) {
         return res.status(400).json({
