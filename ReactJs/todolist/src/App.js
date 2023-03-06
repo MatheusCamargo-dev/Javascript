@@ -1,10 +1,9 @@
+import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+export default function App() {
   return (
-    <h1 class="text-info">Hello world</h1>
-  );
+    <h1 className="text-success">Hello world!</h1>
+  )
 }
-
-export default App;
