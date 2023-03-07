@@ -9,21 +9,19 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:prettier/recommended',
   ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
+  presets: [
+    "@babel/preset-react"
+  ],
   parser: '@babel/eslint-parser',
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    requireConfigFile: false
   },
-  plugins: ['react', 'prettier', 'react-hooks'],
+  plugins: ['react', 'react-hooks'],
   settings: {
     react: {
       version: 'detect',

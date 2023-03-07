@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Plus } from 'react-bootstrap-icons';
 export default class Main extends Component {
   state = {
     newTask: '',
@@ -14,15 +14,23 @@ export default class Main extends Component {
   render(){
     const { newTask } = this.state;
     return(
-      <div className="container">
-        <div className="container d-flex flex-column bg-info mt-2 p-2 justify-content-center align-items-center rounded border border-white">
+      <div className="container col-6">
+        <div className="container d-flex flex-column bg-white mt-5 p-2 justify-content-center align-items-center rounded border border-info">
           <h1 className='text-center'>To-do list</h1>
-          <h1 className="text-success">{newTask}</h1>
           <form action="#">
             <div className="d-flex col text-center">
-              <input onChange={this.handleChange} type="text" className='form-control' />
-              <button type="submit" className='btn btn-success ms-2'>Submit</button>
-
+              <input
+                onChange={this.handleChange}
+                type="text"
+                className='form-control border-right-0'
+                value={newTask}
+              />
+              <button type="submit" className="rounded ms-1">
+              <Plus
+                size={35}
+                className="bg-danger"
+              />
+              </button>
             </div>
           </form>
         </div>
