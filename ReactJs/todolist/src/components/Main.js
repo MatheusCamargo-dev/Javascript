@@ -6,11 +6,7 @@ import './Main.css';
 export default class Main extends Component {
   state = {
     newTask: '',
-    tasks: [
-      'make coffee',
-      'drink water',
-      'study',
-    ]
+    tasks: []
   }
 
   handleChange = (e) => {
@@ -19,13 +15,46 @@ export default class Main extends Component {
     })
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const { tasks } = this.state;
+    let { newTask } = this.state;
+    newTask = newTask.trim();
+
+    if(tasks.indexOf(newTask) !== -1 || newTask === '') return;
+
+    const newTasks = [...tasks];
+    this.setState({
+      tasks: [...newTasks, newTask]
+    })
+
+    this.setState({
+      newTask: ''
+    })
+
+    newTask.focus;
+  }
+
+  handleEdit = (e, index) => {
+    console.log('Edit', index);
+  }
+  handleDelete = (e, index) => {
+    const { tasks } = this.state;
+    const newTasks = [...tasks];
+    newTasks.splice(index, 1);
+
+    this.setState({
+      tasks: [...newTasks],
+    })
+
+  }
   render(){
     const { newTask, tasks } = this.state;
     return(
       <div className="container col-5">
         <div className="container d-flex flex-column bg-white mt-5 p-2 justify-content-center align-items-center rounded border border-info">
           <h1 className='text-center'>To-do list</h1>
-          <form action="#">
+          <form action="#" onSubmit={this.handleSubmit}>
             <div className="d-flex col text-center">
               <input
                 onChange={this.handleChange}
@@ -42,22 +71,25 @@ export default class Main extends Component {
             </div>
           </form>
 
-          <ul className="tasks mt-2 col-10">
-            {tasks.map((task) => (
-              <li key={task} className="d-flex justify-content-between p-2">
-                {task}
-                <div className='mb-1'>
-                  <FaEdit
-                    size={25}
-                  />
-                  <FaWindowClose
-                    className='ms-2'
-                    size={25}
-                  />
-                </div>
-              </li>
-            ))}
-          </ul>
+            <ul className="tasks mt-2 col-10">
+              {tasks.map((task, index) => (
+                <li key={task} className="d-flex justify-content-between align-items-center p-2">
+                  <span>{task}</span>
+                  <div>
+                    <FaEdit
+                      size={25}
+                      onClick={(e) => this.handleEdit(e, index)}
+                    />
+                    <FaWindowClose
+                      size={25}
+                      className="ms-1"
+                      onClick={(e) => this.handleDelete(e, index)}
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+
         </div>
       </div>
     )
