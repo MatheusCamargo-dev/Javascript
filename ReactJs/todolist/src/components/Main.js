@@ -10,6 +10,21 @@ export default class Main extends Component {
     index: -1,
   }
 
+  componentDidMount(){
+    const tasks = JSON.parse(localStorage.getItem('tasks'))
+    if(!tasks) return;
+
+    this.setState({tasks});
+  }
+  componentDidUpdate(prevProps, prevState) {
+    const { tasks } = this.state;
+
+    console.log(prevState.tasks)
+    if(tasks === prevState.tasks) return;
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+
   handleChange = (e) => {
     this.setState({
       newTask: e.target.value,
