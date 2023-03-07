@@ -6,7 +6,8 @@ import './Main.css';
 export default class Main extends Component {
   state = {
     newTask: '',
-    tasks: []
+    tasks: [],
+    index: -1,
   }
 
   handleChange = (e) => {
@@ -17,27 +18,40 @@ export default class Main extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { tasks } = this.state;
+    const { tasks, index } = this.state;
     let { newTask } = this.state;
     newTask = newTask.trim();
 
     if(tasks.indexOf(newTask) !== -1 || newTask === '') return;
 
     const newTasks = [...tasks];
-    this.setState({
-      tasks: [...newTasks, newTask]
-    })
 
-    this.setState({
-      newTask: ''
-    })
+    if(index === -1){
+      this.setState({
+        tasks: [...newTasks, newTask],
+        newTask: '',
+      })
+    }else{
+      newTasks[index] = newTask;
+      this.setState({
+        tasks: [...newTasks],
+        index: -1,
+      })
+    }
 
     newTask.focus;
   }
 
   handleEdit = (e, index) => {
     console.log('Edit', index);
+    const { tasks } = this.state;
+
+    this.setState({
+      index: index,
+      newTask: tasks[index],
+    })
   }
+
   handleDelete = (e, index) => {
     const { tasks } = this.state;
     const newTasks = [...tasks];
