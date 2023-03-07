@@ -1,0 +1,4 @@
+.tasks li:hover {
+  background-color: rgb(54, 181, 181);
+  transition: all 600ms;
+}
