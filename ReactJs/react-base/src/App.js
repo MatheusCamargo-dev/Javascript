@@ -1,8 +1,13 @@
 import React from 'react';
+import Login from './pages/Login';
+import Styles from './styles/Styles';
 
 function App() {
   return (
-    <h1 className="success">Hello world</h1>
+    <>
+      <Login />,
+      <Styles />
+    </>
   );
 }
 
