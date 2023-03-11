@@ -6,7 +6,8 @@ export const Posts = () => {
     const [qs] = useSearchParams();
     return(
         <div>
-            <h1>Post Para:{id} {`QS:${qs.get('page') ?? 'none'}`} </h1>
+            <h1>Post for: {id} </h1>
+            <h1>{`Page: ${qs.get('page') ?? 'none'}`} </h1>
         </div>
     );
 }

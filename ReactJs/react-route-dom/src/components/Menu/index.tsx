@@ -14,6 +14,9 @@ export const Menu = () => {
             <li className="nav-item">
                 <Link className="nav-link" to="/posts/10">Post 10</Link>
             </li>
+            <li className="nav-item">
+                <Link className="nav-link" to="/redirect">Redirect</Link>
+            </li>
         </ul>
     );
 }
