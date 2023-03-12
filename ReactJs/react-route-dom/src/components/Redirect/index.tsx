@@ -12,7 +12,9 @@ export const Redirect = () => {
             setTime((t) => t-1);
         },1000);
         if(time <= 0){
-            navigate('/');
+            navigate('/about', {
+                state:`This is the state: ${Math.random()}`
+            });
         }
         return () => {
             clearTimeout(timeout.current);

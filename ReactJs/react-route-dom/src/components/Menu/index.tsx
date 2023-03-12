@@ -6,7 +6,7 @@ export const Menu = () => {
                 <Link className="nav-link active" to="/" aria-current="page">Home</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="/about">About</Link>
+                <Link className="nav-link" to="/about" state={'This is state from ABOUT'}>About</Link>
             </li>
             <li className="nav-item">
                 <Link className="nav-link" to="/posts">Posts</Link>
