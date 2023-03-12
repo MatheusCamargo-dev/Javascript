@@ -7,6 +7,7 @@ export const Posts = () => {
     return(
         <div className='text-center'>
             <h1> This is a page of Posts </h1>
+            { !id ? (<Link className="link-info mt-5" to="/posts/1">Click here to see Post 1</Link>) : null }
             <Outlet />
             { id && parseInt(id) > 0 ? (
             <>
